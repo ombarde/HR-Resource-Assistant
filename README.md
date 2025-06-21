@@ -38,16 +38,53 @@ A full-stack HR assistant that helps you find, recommend, and manage employees b
 ## API Documentation
 
 ### Endpoints
-- `POST /chat` — Natural language HR queries (JSON: `{query: str}`)
-- `POST /recommendations` — Get top employee recommendations (JSON: `{query: str}`)
-- `GET /employees` — List all employees
-- `GET /employees/search` — Filter employees by skills, experience, etc.
-- `GET /employees/{employee_id}` — Get employee by ID
-- `POST /employees` — Add new employee (JSON)
-- `PUT /employees/{employee_id}` — Edit employee (JSON)
-- `DELETE /employees/{employee_id}` — Delete employee
-- `GET /stats` — Employee analytics
-- `POST /match-jd-resumes` — Match uploaded resumes to a JD (multipart form: `jd_text`/`jd_file`, `resumes[]`)
+
+- `POST /chat`
+  - Description: Process natural language HR queries.
+  - Request: JSON object with `query` string.
+  - Response: JSON with chatbot response, matched employees, and confidence score.
+
+- `POST /recommendations`
+  - Description: Get AI-powered top employee recommendations based on query.
+  - Request: JSON object with `query` string.
+  - Response: JSON with list of recommended employees and count.
+
+- `GET /employees`
+  - Description: Retrieve all employees.
+  - Response: JSON with list of all employees.
+
+- `GET /employees/search`
+  - Description: Search employees with filters.
+  - Query Parameters: `skills` (comma-separated), `min_experience` (int), `availability` (string), `department` (string).
+  - Response: JSON with filtered employees and count.
+
+- `GET /employees/{employee_id}`
+  - Description: Get details of a specific employee by ID.
+  - Response: JSON with employee details.
+
+- `POST /employees`
+  - Description: Add a new employee.
+  - Request: JSON with employee data.
+  - Response: Success message and added employee or error.
+
+- `PUT /employees/{employee_id}`
+  - Description: Update an existing employee.
+  - Request: JSON with updated employee data.
+  - Response: Success message and updated employee or error.
+
+- `DELETE /employees/{employee_id}`
+  - Description: Delete an employee by ID.
+  - Response: Success message or error.
+
+- `GET /stats`
+  - Description: Get statistics about employees (availability, departments, skills, experience).
+  - Response: JSON with stats data.
+
+- `POST /match-jd-resumes`
+  - Description: Match uploaded resumes to a job description.
+  - Request: Multipart form with `jd_text` or `jd_file`, and multiple `resumes`.
+  - Response: JSON with matched resumes and employees.
+
 
 ## AI Development Process
 
@@ -61,7 +98,7 @@ A full-stack HR assistant that helps you find, recommend, and manage employees b
   - AI recommended FastAPI for rapid prototyping and scikit-learn for simple semantic search.
   - AI suggested a hybrid approach: match both resumes and employees for best results.
 - **AI Assistance:**
-  - ~70% of code was AI-generated, especially for boilerplate, endpoints, and UI.
+  - ~60% of code was AI-generated, especially for boilerplate, endpoints, and UI.
   - Manual work: fine-tuning info extraction, frontend polish, and some bug fixes.
 - **Interesting AI Solutions:**
   - AI-generated regex for extracting emails/contacts from resumes.
@@ -90,3 +127,13 @@ A full-stack HR assistant that helps you find, recommend, and manage employees b
 - Add analytics dashboards and export features.
 - Deploy as a Dockerized web app for easy installation.
 - Add automated tests and CI/CD.
+
+## Demo
+
+Try the live demo of the frontend hosted on GitHub Pages:
+
+[https://ombarde.github.io/HR-Resource-Assistant/](https://ombarde.github.io/HR-Resource-Assistant/)
+
+The backend API is hosted on Render at:
+
+[https://hr-resource-assistant.onrender.com](https://hr-resource-assistant.onrender.com)
